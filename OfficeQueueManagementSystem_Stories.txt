@@ -1,0 +1,13 @@
+OFFICE QUEUE MANAGEMENT SYSTEM
+STORIES
+
+	1. As a Customer I want to be notified when it's my turn and where to go; (Average estimation 13)
+	2. As a Custumer I want to access a counter in order to receive a service; (Average estimation 5)
+	3. As a Customer I want to know how much time I have to wait; (Average estimation 5)
+
+	4. As an Office Worker I want to notify the system when I'm done with a client; (Average estimation 2)
+
+	5. As an Admin I want to configure the time that each service takes (tr); (Average estimation 2)
+
+	6. As a manager I want to view office statistics; (Average estimation 8)
+	
