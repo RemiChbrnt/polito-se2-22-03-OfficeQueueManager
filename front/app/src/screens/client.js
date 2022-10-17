@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import { Col, Container, Row} from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import createTicket from "../API.js"
+import API from "../API.js"
 import { Services } from '../components/customer/CustomerComponents'; 
 
 
@@ -25,7 +25,7 @@ const ClientView = () => {
       <Container fluid> 
           <Row> 
             <Col> 
-              <Services createTicket={createTicket}
+              <Services createTicket={API.createTicket}
                         customerRequest={customerRequest} 
                         setCustomerRequest={setCustomerRequest}></Services>
             </Col>

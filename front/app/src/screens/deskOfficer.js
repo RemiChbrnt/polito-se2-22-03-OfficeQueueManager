@@ -1,16 +1,24 @@
 import React, {useState, useEffect} from "react";
-import { Col, Container, Row} from 'react-bootstrap';
+import { Button, Card, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import API from "../API.js"
+// import "../../css/workerPage.css"
 
 const DeskOfficerView = () => {
-    return(
-      <Container fluid> 
-          <h1> Welcome to the Desk Officer Page ! </h1>
-          <Link to="/">Go back</Link>
-      </Container>
-  
-    ); 
+  return (
+    <Container>
+        <Card>
+            <Card.Title>Currently serving client: *******</Card.Title>
+            <Card.Text>
+                Lorem Ipsum
+            </Card.Text>
+            <Button variant="primary" onClick={()=>action()}><span>Next Client</span></Button>
+        </Card>
+    </Container>
+);
+}
+function action(){
+API.nextClient();
 }
 
 export default DeskOfficerView;
