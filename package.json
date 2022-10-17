@@ -1,0 +1,19 @@
+{
+  "name": "polito-se2-22-03-officequeuemanager",
+  "version": "1.0.0",
+  "description": "Built With\r Front-End: JavaSript React;\r Back-End: JavaScript React;\r Database: Firebase;\r Test framework: Mocha;",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RemiChbrnt/polito-se2-22-03-OfficeQueueManager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RemiChbrnt/polito-se2-22-03-OfficeQueueManager/issues"
+  },
+  "homepage": "https://github.com/RemiChbrnt/polito-se2-22-03-OfficeQueueManager#readme"
+}
