@@ -6,12 +6,14 @@ function Services(props) {
     const [form, setForm] = useState(false);
       return (
          <Col>
-          {!props.customerRequest && !form && <Container fluid className="createRequestContainer"><CreateRequest form={form} setForm={setForm}/> </Container>}
+          {!props.customerRequest && !form && <Container fluid className="createRequestContainer">
+            <CreateRequest form={form} setForm={setForm}/> 
+          </Container>}
           {form && !props.customerRequest &&
             <Container className="createRequestContainer">
-                  <RequestFormCreate setForm={setForm} createRequest={props.createRequest}/>
+                  <RequestFormCreate setForm={setForm} createTicket={props.createTicket}/>
             </Container>
-            }
+          }
           {props.customerRequest &&
             <Container fluid className="editPlanContainer">
             <Col>
@@ -31,35 +33,36 @@ function Services(props) {
   function CreateRequest(props){
     return(
       <>
-      <Col><span>No service requested yet. </span></Col>
-      <Col className="buttonCol"><Button className="bn632-hover1 bn27" borderless="true" onClick={() => props.setForm(true)}>CREATE REQUEST</Button></Col>
+        <Col><span>No service requested yet. </span></Col>
+        <Col className="buttonCol"><Button className="bn632-hover1 bn27" borderless="true" onClick={() => props.setForm(true)}>CREATE REQUEST</Button></Col>
       </>
     );
   }
 
   function RequestFormCreate(props){
-    const [option, setOption] = useState('service 1');
+    const [selectedService, setSelectedService] = useState("serviceTickets1");
   
-    const handleCreate = (event) => {
-      event.preventDefault();
-      props.createRequest(option);
+    const handleCreate = () => {
+      let test = props.createTicket(selectedService);
+      console.log(test);
       props.setForm(false);
     };
+
     return(
       <>
-      <Form onSubmit={handleCreate}>
-      <Form.Group className="mb-3 createForm" controlId='option'>
-      <Form.Label>SELECT OPTION</Form.Label>
-      <Form.Select  onChange={ev => setOption(ev.target.value)}>
-      <option>service 1</option>
-      <option>service 2</option>
-      <option>service 3</option>
-      <option>service 4</option>
-      <option>service 5</option>
-      </Form.Select>
-      </Form.Group>
-      <Button type="submit" className="bn632-hover2 bn27" borderless="true">CONFIRM</Button>
-      </Form>
+        <Form onSubmit={() => handleCreate()}>
+          <Form.Group className="mb-3 createForm" controlId='option'>
+            <Form.Label>SELECT OPTION</Form.Label>
+            <Form.Select onChange={ev => setSelectedService(ev.target.value)} value={selectedService}>
+              <option>serviceTickets1</option>
+              <option>serviceTickets2</option>
+              <option>service 3</option>
+              <option>service 4</option>
+              <option>service 5</option>
+            </Form.Select>
+          </Form.Group>
+          <Button type="submit" className="bn632-hover2 bn27" borderless="true">CONFIRM</Button>
+        </Form>
       </>
     );
   }

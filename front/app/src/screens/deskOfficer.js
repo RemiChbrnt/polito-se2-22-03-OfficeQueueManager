@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const DeskOfficerView = () => {
     return(
       <Container fluid> 
-          <h> Welcome to the Desk Officer Page ! </h>
+          <h1> Welcome to the Desk Officer Page ! </h1>
           <Link to="/">Go back</Link>
       </Container>
   

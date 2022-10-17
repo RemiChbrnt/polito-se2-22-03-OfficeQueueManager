@@ -7,7 +7,7 @@ const HomeView = () => {
     return(
       <Container fluid> 
         <div style={styles.container}>
-            <h> Welcome to Queue Office Management ! </h>
+            <h1> Welcome to Queue Office Management ! </h1>
             <Link to="/client">Go to Client</Link>
             <Link to="/admin">Go to Admin</Link>
             <Link to="/desk-officer">Go to Desk Officer</Link>

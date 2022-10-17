@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const AdminView = () => {
     return(
       <Container fluid> 
-          <h> Welcome to the Admin Page ! </h>
+          <h1> Welcome to the Admin Page ! </h1>
           <Link to="/">Go Back</Link>
       </Container>
   

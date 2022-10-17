@@ -13,10 +13,10 @@ async function createTicket(requestedService) {
             timestamp: Timestamp.now()
         });
 
-        db.collection(String(requestedService)).get().then(snap => {
-            const size = snap.size;
-            /* TODO: multiply the size of the queue by the average waiting time for the correspondent service */
-        });
+        // collection(db, String(requestedService)).getDoc().then(snap => {
+        //     const size = snap.size;
+        //     /* TODO: multiply the size of the queue by the average waiting time for the correspondent service */
+        // });
         return docRef.id;
     } else {
         console.log('ERROR: unsupported service');
