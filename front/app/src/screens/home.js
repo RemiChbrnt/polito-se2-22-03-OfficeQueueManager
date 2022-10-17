@@ -1,28 +1,63 @@
-import React, {useState, useEffect} from "react";
-import { Col, Container, Row} from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Col, Container, Button, Row } from 'react-bootstrap';
+import { Link, useNavigate } from "react-router-dom";
 
 
 const HomeView = () => {
-    return(
-      <Container fluid> 
-        <div style={styles.container}>
-            <h1> Welcome to Queue Office Management ! </h1>
-            <Link to="/client">Go to Client</Link>
-            <Link to="/admin">Go to Admin</Link>
-            <Link to="/desk-officer">Go to Desk Officer</Link>
-            <Link to="/login">Go to login</Link>
-        </div>
-      </Container>
-  
-    ); 
+  const navigate = useNavigate();
+
+  return (
+    <Container fluid>
+      <Row>
+        <h1>Home</h1>
+      </Row>
+      <Row>
+        <Col>
+          <Container>
+            <Row>
+              <Button onClick={() => { navigate('/client') }} variant="secondary" size="lg">
+                Client
+              </Button>
+            </Row>
+          </Container>
+          <ul></ul>
+          <Container>
+            <Row>
+              <Button onClick={() => { navigate('/desk-officer') }} variant="secondary" size="lg">
+                Desk Officer
+              </Button>
+            </Row>
+          </Container>
+        </Col>
+
+        <Col>
+          <Container>
+            <Row>
+              <Button onClick={() => { navigate('/admin') }} variant="secondary" size="lg">
+                Admin
+              </Button>
+            </Row>
+          </Container>
+          <ul></ul>
+          <Container>
+            <Row>
+              <Button onClick={() => { navigate('/login') }} variant="secondary" size="lg">
+                Login
+              </Button>
+            </Row>
+          </Container>
+        </Col>
+
+      </Row>
+    </Container>
+  );
 }
 
-const styles={
-    "container":{
-        display:"flex",
-        flexDirection: "column",
-    }
+const styles = {
+  "container": {
+    display: "flex",
+    flexDirection: "column",
+  }
 }
 
 export default HomeView;

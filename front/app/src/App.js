@@ -32,8 +32,7 @@ function App() {
     //     //getCustomers(); 
     // }, []);
     
-  return(
-    <Container> 
+  return( 
       <BrowserRouter> 
       <NavigationBar/>
         <Routes>
@@ -47,8 +46,6 @@ function App() {
           }
         </Routes>
       </BrowserRouter>
-    </Container>
-    
   );
 }
 
