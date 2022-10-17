@@ -5,7 +5,7 @@ Database: Firebase;
 Test framework: Mocha;
 
 
-### API DOC ###
+# API DOC #
 
 ## Firestore ##
 Services : "service name"
@@ -20,11 +20,11 @@ Authentication : TODO
 
 ## API ##
 
-# Ticket #
+### Ticket ###
 
 createTicket : 
     - parameters : service name
-    - return : ticket ID (string)
+    - return : ticket ID (string), estimated waiting time (number)
 
 removeTicket :
     - parameters : service name, ticket ID
@@ -34,7 +34,7 @@ getTicketsFromService :
     - parameters : service name
     - return : array of the tickets in queue
 
-# Service #
+### Service ###
 
 createService :
     - parameters: service name, estimated service time
@@ -52,7 +52,7 @@ removeService :
     - parameters : service name
     - return : boolean
 
-# Desk #
+### Desk ###
 
 createDesk :
     - parameters: desk name, services available
@@ -66,13 +66,13 @@ removeDesk :
     - parameters : desk name
     - return : boolean
 
-# Time #
+### Time ###
 
 getEstimatedWaitingTime :
     - parameters : service name, ticket ID
     - return : string
 
-# Stats #
+### Stats ###
 
 
 
