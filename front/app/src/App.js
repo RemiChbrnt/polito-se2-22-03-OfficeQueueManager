@@ -1,55 +1,57 @@
 import './App.css';
-
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Col, Container, Row} from 'react-bootstrap';
+import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import { NavigationBar } from './components/Navbar';
+import routes from './navigation/routes';
 import db from "./firebase-config.js";
-import React, {useState, useEffect } from "react";
-import {collection, getDocs} from "firebase/firestore";
+import React, {useState, useEffect } from 'react';
+import {collection, getDocs} from 'firebase/firestore';
 
 
 function App() {
 
-    const [services, setServices] = useState([]);
-    const [otherServices, setOtherServices] = useState([]);
+    //const [services, setServices] = useState([]);
+    // const [customers, setCustomers] = useState([]); 
+    // const [loggedIn, setLoggedIn] = useState(false);
 
-    const servicesCollectionRef = collection(db, "services");
-    const otherServicesCollectionRef = collection(db, "otherServices");
+    //const servicesCollectionRef = collection(db, "services");
+    //const customersCollectionRef= collection(db, "customers"); //reminder: create customer collection with id and serviceid associated
 
-    useEffect(() => {
-        const getServices = async() => {
-            const data = await getDocs(servicesCollectionRef);
-            setServices(data.docs.map((doc) => ({ ...doc.data(), id:doc.id })));
-        }
-
-        const getOtherServices = async() => {
-          const data = await getDocs(otherServicesCollectionRef);
-          setOtherServices(data.docs.map((doc) => ({ ...doc.data(), id:doc.id })));
-      
-
-        getServices();
-        getOtherServices();
-    }, []);
-
-  return (
-    <div className="App">
-      <header className="App-header">
-              <p>Office Queue Management</p>
-              <div>
-              {services.map((service) => (
-
-                  <h1 key={service.name}>{service.name}</h1>
-
-              ))}
-          </div>
-          <div>
-              {otherServices.map((otherService) => (
-
-                  <h1 key={otherService.name}>{otherService.name} - ID: {otherService.serviceNumber}</h1>
-
-              ))}
-          </div>
-      </header>
-          
-    </div>
+    // useEffect(() => {
+    //     const getServices = async() => {
+    //         const data = await getDocs(servicesCollectionRef);
+    //         setServices(data.docs.map((doc) => ({ ...doc.data(), id:doc.id })));
+    //     }
+    //   //   const getCustomers = async() => {
+    //   //     const data = await getDocs(customersCollectionRef);
+    //   //     setCustomers(data.docs.map((doc) => ({ ...doc.data(), id:doc.id })));
+    //   // }
+    //     getServices();
+    //     //getCustomers(); 
+    // }, []);
+    
+  return(
+    <Container> 
+      <BrowserRouter> 
+      <NavigationBar/>
+        <Routes>
+          {routes.map((route)=>{
+              return(<Route 
+                key={route.key}
+                path={route.path}
+                element={route.screen}
+                />);
+            })
+          }
+        </Routes>
+      </BrowserRouter>
+    </Container>
+    
   );
 }
+
+
 
 export default App;
