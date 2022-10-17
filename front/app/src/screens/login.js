@@ -9,7 +9,6 @@ const LoginView = () => {
           <h> Welcome to the Desk Officer Page ! </h>
           <Link to="/">Go back</Link>
       </Container>
-  
     ); 
 }
 
