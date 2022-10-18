@@ -18,7 +18,7 @@ const HomeView = () => {
           <Container>
             <Row>
               <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/client') }}>
-                <h3 className="text-white">Customer</h3>
+                <h3 className="text-white">Client</h3>
               </Button>
             </Row>
           </Container>
