@@ -8,23 +8,25 @@ const HomeView = () => {
 
   return (
     <Container fluid>
+      <ul></ul>
       <Row>
         <h1>Home</h1>
       </Row>
+      <ul></ul>
       <Row>
         <Col>
           <Container>
             <Row>
-              <Button onClick={() => { navigate('/client') }} variant="secondary" size="lg">
-                Client
+              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/client') }}>
+                <h3 className="text-white">Client</h3>
               </Button>
             </Row>
           </Container>
           <ul></ul>
           <Container>
             <Row>
-              <Button onClick={() => { navigate('/desk-officer') }} variant="secondary" size="lg">
-                Desk Officer
+              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/desk-officer') }}>
+              <h3 className="text-white">Desk Officer</h3>
               </Button>
             </Row>
           </Container>
@@ -33,16 +35,16 @@ const HomeView = () => {
         <Col>
           <Container>
             <Row>
-              <Button onClick={() => { navigate('/admin') }} variant="secondary" size="lg">
-                Admin
+              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/admin') }}>
+              <h3 className="text-white">Admin</h3>
               </Button>
             </Row>
           </Container>
           <ul></ul>
           <Container>
             <Row>
-              <Button onClick={() => { navigate('/login') }} variant="secondary" size="lg">
-                Login
+              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/login') }}>
+              <h3 className="text-white">Login</h3>
               </Button>
             </Row>
           </Container>
