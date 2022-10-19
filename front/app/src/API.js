@@ -1,5 +1,5 @@
 import db from './firebase-config.js';
-import {collection, doc, addDoc, Timestamp, getDocs,deleteDoc} from 'firebase/firestore';
+import {collection, doc, addDoc, Timestamp, getDocs, getDoc,deleteDoc, get} from 'firebase/firestore';
 import { query, orderBy, limit } from "firebase/firestore";
 
 /* Function to generate a new ticket for the specified requested service. The requestedService parameter
@@ -24,17 +24,35 @@ async function createTicket(requestedService) {
     }
 }
 
-async function nextClient(){
+async function nextClient(deskName){
     //get all three collections
+    const desk="Desk1";
+    const deskinfo = await getDoc(doc(db,"Desks",desk));
+    const servicesNames = deskinfo.data().services;
+    const queues=[]; //list of the queues available to that specific desk
+    for (const queueName of servicesNames){
+        const docsSnap = await getDocs(collection(db,queueName));
+        queues.push(docsSnap);
+    }
     const docsSnap1 = await getDocs(collection(db,"serviceTickets1"));
     const docsSnap2 = await getDocs(collection(db,"serviceTickets2"));
     const docsSnap3 = await getDocs(collection(db,"serviceTickets3"));
 
-    var size = docsSnap1.size;
-    var selected="serviceTickets1";
+    var size = queues[0].size;
+    var selected=servicesNames[0];
     //assuming 1 is faster than 2 and so on ...
-    if(size < docsSnap2.size){size=docsSnap2.size; selected="serviceTickets2";} 
-    if(size < docsSnap3.size){size=docsSnap3.size; selected="serviceTickets3";} 
+    for(let i=1;i<queues.length;i++){
+            // console.log("comparing:")
+            // console.log(selected+" with "+servicesNames[i])
+            // console.log(size+" with "+queues[i].size)
+        if(size < queues[i].size){
+            size = queues[i].size;
+            selected = servicesNames[i];
+            
+        }
+    }
+    console.log(selected)
+    console.log(size)
     //we have the size of the longest queue and a reference to the collection
 
     //now we shall pop the oldest element from the right collection
