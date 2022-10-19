@@ -1,14 +1,14 @@
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Container, Row} from 'react-bootstrap';
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import { Col, Container, Row } from 'react-bootstrap';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { NavigationBar } from './components/Navbar';
 import routes from './navigation/routes';
 import db from "./firebase-config.js";
-import React, {useState, useEffect } from 'react';
-import {collection, getDocs} from 'firebase/firestore';
-
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { Display } from './screens/display';
 
 function App() {
 
@@ -31,25 +31,26 @@ function App() {
     //     getServices();
     //     //getCustomers(); 
     // }, []);
-    
-  return(
-    <Container> 
-      <BrowserRouter> 
-      <NavigationBar/>
-        <Routes>
-          {routes.map((route)=>{
-              return(<Route 
-                key={route.key}
-                path={route.path}
-                element={route.screen}
-                />);
-            })
-          }
-        </Routes>
-      </BrowserRouter>
-    </Container>
-    
-  );
+
+    return (
+        <Container>
+            <BrowserRouter>
+                <NavigationBar />
+                <Routes>
+                    {routes.map((route) => {
+                        return (<Route
+                            key={route.key}
+                            path={route.path}
+                            element={route.screen}
+                        />);
+                    })
+                    }
+                </Routes>
+            </BrowserRouter>
+            <Display />
+        </Container>
+
+    );
 }
 
 
