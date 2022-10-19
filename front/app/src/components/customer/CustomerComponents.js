@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 function Services(props) {
   const [form, setForm] = useState(false);
+  const [ticketId, setTicketId]=useState('');
+  const [waitingTime, setWaitingTime]=useState(''); 
   return (
     <Col>
       {
@@ -14,7 +16,15 @@ function Services(props) {
       {
         form && !props.customerRequest ? /*&&
         <Container className="createRequestContainer">*/
-          <RequestFormCreate setForm={setForm} createTicket={props.createTicket} /> : false
+          <RequestFormCreate 
+                setCustomerRequest={props.setCustomerRequest} 
+                setForm={setForm} 
+                createTicket={props.createTicket}
+                setTicketId={setTicketId}
+                setWaitingTime={setWaitingTime}
+                ticketId={ticketId}
+                waitingTime={waitingTime} /> 
+          : false
         /*</Container>*/
       }
       {
@@ -23,7 +33,10 @@ function Services(props) {
           <Col>
             <Row className="editRow">
               <Col>
-                <b>Requested Service</b> &emsp;
+                <b>REQUESTED SERVICE</b>
+                <p></p>
+                <p><b>Ticket ID:</b> {ticketId}</p>
+                <p><b>Expected Waiting Time:</b> {waitingTime}</p>
               </Col>
             </Row>
             <br></br>
@@ -43,29 +56,34 @@ function CreateRequest(props) {
       <ul></ul>
       <Row>
         <Col md={10}></Col>
-        <Col md={2}/*className="buttonCol"*/><Button variant="white" size="lg" style={{ backgroundColor: "#85CDCB" }} /*className="bn632-hover1 bn27" borderless="true"*/ onClick={() => props.setForm(true)}><h4 className="text-white">Create request</h4></Button></Col>
+        <Col md={2}/*className="buttonCol"*/>
+          <Button variant="white" size="lg" style={{ backgroundColor: "#85CDCB" }} /*className="bn632-hover1 bn27" borderless="true"*/ onClick={() => props.setForm(true)}><h4 className="text-white">Create request</h4></Button>
+        </Col>
       </Row>
     </>
   );
 }
 
 function RequestFormCreate(props) {
-  const [selectedService, setSelectedService] = useState("serviceTickets1");
-
-  const handleCreate = () => {
-    let test = props.createTicket(selectedService);
-    console.log(test);
+  const [selectedService, setSelectedService] = useState("serviceTest1");
+  const handleCreate = async (event) => {
+    event.preventDefault();
+    let res= await props.createTicket(selectedService);
+    props.setTicketId(res[0]); 
+    props.setWaitingTime(res[1]); 
+    console.log(res);
     props.setForm(false);
+    props.setCustomerRequest(true); 
   };
 
   return (
     <>
-      <Form onSubmit={() => handleCreate()}>
+      <Form onSubmit={handleCreate}>
         <Form.Group className="mb-3 createForm" controlId='option'>
           <Form.Label><h2>Select option</h2></Form.Label>
-          <Form.Select onChange={ev => setSelectedService(ev.target.value)} value={selectedService}>
-            <option>serviceTickets1</option>
-            <option>serviceTickets2</option>
+          <Form.Select onChange={ev => setSelectedService(ev.target.value)}>
+            <option>serviceTest1</option>
+            <option>serviceTest2</option>
           </Form.Select>
         </Form.Group>
 
