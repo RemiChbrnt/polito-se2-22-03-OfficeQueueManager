@@ -67,9 +67,6 @@ function RequestFormCreate(props) {
           <Form.Select onChange={ev => setSelectedService(ev.target.value)} value={selectedService}>
             <option>serviceTickets1</option>
             <option>serviceTickets2</option>
-            <option>service 3</option>
-            <option>service 4</option>
-            <option>service 5</option>
           </Form.Select>
         </Form.Group>
 
