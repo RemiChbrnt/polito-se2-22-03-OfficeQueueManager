@@ -1,5 +1,5 @@
 import db from './firebase-config.js';
-import {collection, addDoc, Timestamp} from 'firebase/firestore';
+import {collection, addDoc, Timestamp, doc, getDoc, data} from 'firebase/firestore';
 
 /* Function to generate a new ticket for the specified requested service. The requestedService parameter
    is one of the available services' name, used to insert the ticket in the correct queue. Each ticket 
@@ -8,18 +8,16 @@ import {collection, addDoc, Timestamp} from 'firebase/firestore';
 
 /* TODO: change the service names and waiting times to the actual ones */
 async function createTicket(requestedService) {
-    if(requestedService === 'serviceTickets1' || requestedService === 'serviceTickets2' || requestedService === 'serviceTickets3'){
-        const docRef = await addDoc(collection(db, String(requestedService)), {
-            timestamp: Timestamp.now()
+    if(requestedService === 'serviceTest1' || requestedService === 'serviceTest2'){
+        const docRef = await addDoc(collection(db, "/services/" + requestedService + "/tickets"), {
+            timestamp : Timestamp.now()
         });
-
-        // collection(db, String(requestedService)).getDoc().then(snap => {
-        //     const size = snap.size;
-        //     /* TODO: multiply the size of the queue by the average waiting time for the correspondent service */
-        // });
-        return docRef.id;
+        const serviceRef = doc(db, "services", requestedService);
+        const service = await getDoc(serviceRef);
+        console.log('Returning ' + docRef.id + ' - ' + service.data().estimatedTime);
+        return [docRef.id, service.estimatedTime];
     } else {
-        console.log('ERROR: unsupported service');
+        console.log('ERROR: Unsupported service');
     }
 }
 
