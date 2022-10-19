@@ -2,6 +2,7 @@
 import db from "../firebase-config"
 import { useEffect, useState } from 'react';
 import { collection, getDocs, doc } from "firebase/firestore";
+import '../App.css';
 
 function Display() {
 
@@ -69,10 +70,10 @@ function Display() {
 
 
     return (
-        <div className="App">
+        <div className="DisplayContainer">
             {!loading &&
                 <div className="Display">
-                    <table>
+                    <table className="table">
                         <tbody>
                             <tr><th>Service</th><th>Queue length</th><th>Estimated time</th></tr>
                             {
@@ -88,7 +89,7 @@ function Display() {
                             }
                         </tbody>
                     </table>
-                    <table>
+                    <table width="100%">
                         <tbody>
                             <tr><th>Current Ticket</th><th>Counter</th></tr>
                             {desks.map((d, i) => {
