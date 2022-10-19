@@ -1,28 +1,65 @@
-import React, {useState, useEffect} from "react";
-import { Col, Container, Row} from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Col, Container, Button, Row } from 'react-bootstrap';
+import { Link, useNavigate } from "react-router-dom";
 
 
 const HomeView = () => {
-    return(
-      <Container fluid> 
-        <div style={styles.container}>
-            <h1> Welcome to Queue Office Management ! </h1>
-            <Link to="/client">Go to Client</Link>
-            <Link to="/admin">Go to Admin</Link>
-            <Link to="/desk-officer">Go to Desk Officer</Link>
-            <Link to="/login">Go to login</Link>
-        </div>
-      </Container>
-  
-    ); 
+  const navigate = useNavigate();
+
+  return (
+    <Container fluid>
+      <ul></ul>
+      <Row>
+        <h1>Home</h1>
+      </Row>
+      <ul></ul>
+      <Row>
+        <Col>
+          <Container>
+            <Row>
+              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/client') }}>
+                <h3 className="text-white">Client</h3>
+              </Button>
+            </Row>
+          </Container>
+          <ul></ul>
+          <Container>
+            <Row>
+              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/desk-officer') }}>
+              <h3 className="text-white">Desk Officer</h3>
+              </Button>
+            </Row>
+          </Container>
+        </Col>
+
+        <Col>
+          <Container>
+            <Row>
+              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/admin') }}>
+              <h3 className="text-white">Admin</h3>
+              </Button>
+            </Row>
+          </Container>
+          <ul></ul>
+          <Container>
+            <Row>
+              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/login') }}>
+              <h3 className="text-white">Login</h3>
+              </Button>
+            </Row>
+          </Container>
+        </Col>
+
+      </Row>
+    </Container>
+  );
 }
 
-const styles={
-    "container":{
-        display:"flex",
-        flexDirection: "column",
-    }
+const styles = {
+  "container": {
+    display: "flex",
+    flexDirection: "column",
+  }
 }
 
 export default HomeView;
