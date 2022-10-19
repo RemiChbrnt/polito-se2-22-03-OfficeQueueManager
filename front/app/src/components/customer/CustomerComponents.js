@@ -40,9 +40,10 @@ function Services(props) {
   }
 
   function RequestFormCreate(props){
-    const [selectedService, setSelectedService] = useState("serviceTickets1");
+    const [selectedService, setSelectedService] = useState("serviceTest1");
   
     const handleCreate = () => {
+      console.log(`Creating ticket for ${selectedService}`);
       let test = props.createTicket(selectedService);
       console.log(test);
       props.setForm(false);
@@ -54,8 +55,8 @@ function Services(props) {
           <Form.Group className="mb-3 createForm" controlId='option'>
             <Form.Label>SELECT OPTION</Form.Label>
             <Form.Select onChange={ev => setSelectedService(ev.target.value)} value={selectedService}>
-              <option>serviceTickets1</option>
-              <option>serviceTickets2</option>
+              <option>serviceTest1</option>
+              <option>serviceTest2</option>
               <option>service 3</option>
               <option>service 4</option>
               <option>service 5</option>
