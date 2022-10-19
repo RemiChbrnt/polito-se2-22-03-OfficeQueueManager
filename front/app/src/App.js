@@ -47,7 +47,7 @@ function App() {
                     }
                 </Routes>
             </BrowserRouter>
-            <Display/>
+            {/*<Display/>*/}
         </div>
     );
 }

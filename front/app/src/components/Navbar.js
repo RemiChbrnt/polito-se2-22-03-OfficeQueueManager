@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function NavigationBar(props) {
   const navigate = useNavigate();
   return (
-    <Navbar className="myNav" >
+    <Navbar className="myNav">
       <h2 className="text-white"><i onClick={() => { navigate('/') }} className="bi bi-bank myLogo"></i>{" "}Office Queue</h2>
       <NavUser></NavUser>
     </Navbar>

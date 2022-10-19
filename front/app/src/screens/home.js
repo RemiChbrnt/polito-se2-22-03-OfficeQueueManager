@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Button, Row } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
-
+import { SideBar } from './../components/sideBar';
+import { Display } from "./display";
 
 const HomeView = () => {
   const navigate = useNavigate();
@@ -49,7 +50,11 @@ const HomeView = () => {
             </Row>
           </Container>
         </Col>
+      </Row>
+      <ul></ul>
 
+      <Row>
+        <Display/>
       </Row>
     </Container>
   );
