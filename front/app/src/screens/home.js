@@ -17,7 +17,7 @@ const HomeView = () => {
         <Col>
           <Container>
             <Row>
-              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/client') }}>
+              <Button variant="white" size="lg" style={{backgroundColor: "#00706c"}} onClick={() => { navigate('/client') }}>
                 <h3 className="text-white">Client</h3>
               </Button>
             </Row>
@@ -25,7 +25,7 @@ const HomeView = () => {
           <ul></ul>
           <Container>
             <Row>
-              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/desk-officer') }}>
+              <Button variant="white" size="lg" style={{backgroundColor: "#00706c"}} onClick={() => { navigate('/desk-officer') }}>
               <h3 className="text-white">Desk Officer</h3>
               </Button>
             </Row>
@@ -35,7 +35,7 @@ const HomeView = () => {
         <Col>
           <Container>
             <Row>
-              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/admin') }}>
+              <Button variant="white" size="lg" style={{backgroundColor: "#00706c"}} onClick={() => { navigate('/admin') }}>
               <h3 className="text-white">Admin</h3>
               </Button>
             </Row>
@@ -43,7 +43,7 @@ const HomeView = () => {
           <ul></ul>
           <Container>
             <Row>
-              <Button variant="white" size="lg" style={{backgroundColor: "#85CDCB"}} onClick={() => { navigate('/login') }}>
+              <Button variant="white" size="lg" style={{backgroundColor: "#00706c"}} onClick={() => { navigate('/login') }}>
               <h3 className="text-white">Login</h3>
               </Button>
             </Row>

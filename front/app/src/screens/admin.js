@@ -15,7 +15,7 @@ const AdminView = () => {
         </Col>
         <Col md={2}>
           <div className="d-grid gap-2">
-            <Button variant="white" size="lg" style={{ backgroundColor: "#85CDCB" }} onClick={() => { navigate('/') }}><h4 className="text-white"> Home</h4></Button>
+            <Button variant="white" size="lg" style={{ backgroundColor: "#00706c" }} onClick={() => { navigate('/') }}><h4 className="text-white"> Home</h4></Button>
           </div>
         </Col>
       </Row>
