@@ -33,7 +33,7 @@ function App() {
     // }, []);
 
     return (
-        <Container>
+        <div>
             <BrowserRouter>
                 <NavigationBar />
                 <Routes>
@@ -47,8 +47,8 @@ function App() {
                     }
                 </Routes>
             </BrowserRouter>
-            <Display />
-        </Container>
+            <Display/>
+        </div>
     );
 }
 

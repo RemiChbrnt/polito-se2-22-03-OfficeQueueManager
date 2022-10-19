@@ -15,8 +15,8 @@ async function createTicket(requestedService) {
         });
         const serviceRef = doc(db, "services", requestedService);
         const service = await getDoc(serviceRef);
-        console.log('Returning ' + docRef.id + ' - ' + service.data().estimatedTime);
-        return [docRef.id, service.estimatedTime];
+        //console.log('Returning ' + docRef.id + ' - ' + service.data().estimatedTime);
+        return [docRef.id, service.data().estimatedTime];
     } else {
         console.log('ERROR: Unsupported service');
     }
