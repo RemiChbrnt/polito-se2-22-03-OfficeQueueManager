@@ -1,5 +1,5 @@
 import db from './firebase-config.js';
-import {collection, doc, addDoc, Timestamp, getDocs, getDoc,deleteDoc, get} from 'firebase/firestore';
+import {collection, doc, addDoc, Timestamp, getDocs, getDoc,deleteDoc, get, setDoc} from 'firebase/firestore';
 import { query, orderBy, limit } from "firebase/firestore";
 
 /* Function to generate a new ticket for the specified requested service. The requestedService parameter
@@ -50,12 +50,21 @@ async function nextClient(deskName){
     const q = query(collection(db,"services/"+selected+"/tickets"), orderBy("timestamp","asc"), limit(1));
     const querySnapshot = await getDocs(q);
     let id="";
-    querySnapshot.forEach(doc=>{
-        id=doc.id; //this id has to be displayed as the current client
+    querySnapshot.forEach(docum=>{
+        id=docum.id; // this id has to be displayed as the current client
+        setDoc(doc(db, "/Desks/" + deskName + "/" + selected + "/", id), {
+            timestamp : docum.data().timestamp
+        });
     })
+
+    await setDoc(doc(db, "/Desks/", deskName), {
+        currentCustomer : id,
+        services: servicesNames
+    });
 
     //now we can pop it from the queue
     await deleteDoc(doc(db, "services/"+selected+"/tickets", id));
+    
     return id;
 }
 
