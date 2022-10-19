@@ -25,22 +25,17 @@ async function createTicket(requestedService) {
 }
 
 async function nextClient(deskName){
-    //get all three collections
-    const desk="Desk1";
-    const deskinfo = await getDoc(doc(db,"Desks",desk));
+    const deskinfo = await getDoc(doc(db,"Desks",deskName));
     const servicesNames = deskinfo.data().services;
-    const queues=[]; //list of the queues available to that specific desk
-    for (const queueName of servicesNames){
-        const docsSnap = await getDocs(collection(db,queueName));
+    const queues=[]; 
+    for (const queueName of servicesNames){ //retrieving the list of the queues available to that specific desk
+        const docsSnap = await getDocs(collection(db,"services/"+queueName+"/tickets"));
         queues.push(docsSnap);
     }
-    const docsSnap1 = await getDocs(collection(db,"serviceTickets1"));
-    const docsSnap2 = await getDocs(collection(db,"serviceTickets2"));
-    const docsSnap3 = await getDocs(collection(db,"serviceTickets3"));
 
-    var size = queues[0].size;
-    var selected=servicesNames[0];
-    //assuming 1 is faster than 2 and so on ...
+    let size = queues[0].size;
+    let selected=servicesNames[0];
+    //assuming services are ordered based on service speed, we get a reference to the longest one.
     for(let i=1;i<queues.length;i++){
             // console.log("comparing:")
             // console.log(selected+" with "+servicesNames[i])
@@ -48,24 +43,19 @@ async function nextClient(deskName){
         if(size < queues[i].size){
             size = queues[i].size;
             selected = servicesNames[i];
-            
         }
     }
-    console.log(selected)
-    console.log(size)
-    //we have the size of the longest queue and a reference to the collection
 
-    //now we shall pop the oldest element from the right collection
-    //not sure whether there is a better way:
-    const q = query(collection(db,selected), orderBy("timestamp","asc"), limit(1));
+    //now we shall get the id of the oldest element from the collection
+    const q = query(collection(db,"services/"+selected+"/tickets"), orderBy("timestamp","asc"), limit(1));
     const querySnapshot = await getDocs(q);
-    var id="";
+    let id="";
     querySnapshot.forEach(doc=>{
         id=doc.id; //this id has to be displayed as the current client
     })
 
     //now we can pop it from the queue
-    await deleteDoc(doc(db, selected, id));
+    await deleteDoc(doc(db, "services/"+selected+"/tickets", id));
     return id;
 }
 
