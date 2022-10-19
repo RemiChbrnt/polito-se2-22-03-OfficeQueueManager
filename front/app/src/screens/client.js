@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import { Col, Container, Row, Button } from 'react-bootstrap';
-import { Link, useNavigate } from "react-router-dom";
-import createTicket from "../API.js"
-import { Services } from '../components/customer/CustomerComponents';
+import {useState, useEffect} from "react";
+import { Col, Container, Row, Button} from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import API from "../API.js"
+import { Services } from '../components/customer/CustomerComponents'; 
 
 
 const ClientView = () => {
@@ -11,14 +12,14 @@ const ClientView = () => {
 
   const createRequest = null;
   const [customerRequest, setCustomerRequest] = useState(false);
-  const handleCreateRequest = async (option) => {
-    try {
+  const handleCreateRequest=async(option)=>{
+    try{
       // const user=await API.getUserInfo();
       // const request=await API.createRequest(option, user.id);
-
+      
       // if(request) 
-      setCustomerRequest(true);
-    } catch (err) {
+        setCustomerRequest(true); 
+    }catch(err){
       console.log(err);
     }
   }
@@ -40,7 +41,7 @@ const ClientView = () => {
 
       <Row>
         <Col>
-          <Services createTicket={createTicket}
+          <Services createTicket={API.createTicket}
             customerRequest={customerRequest}
             setCustomerRequest={setCustomerRequest}></Services>
         </Col>
