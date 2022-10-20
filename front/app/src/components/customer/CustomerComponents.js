@@ -4,8 +4,9 @@ import { useState } from 'react';
 
 function Services(props) {
   const [form, setForm] = useState(false);
-  const [ticketId, setTicketId]=useState('');
-  const [waitingTime, setWaitingTime]=useState(''); 
+  const [ticketId, setTicketId] = useState('');
+  const [waitingTime, setWaitingTime] = useState('');
+  console.log(props.customerRequest);
   return (
     <Col>
       {
@@ -16,32 +17,36 @@ function Services(props) {
       {
         form && !props.customerRequest ? /*&&
         <Container className="createRequestContainer">*/
-          <RequestFormCreate 
-                setCustomerRequest={props.setCustomerRequest} 
-                setForm={setForm} 
-                createTicket={props.createTicket}
-                setTicketId={setTicketId}
-                setWaitingTime={setWaitingTime}
-                ticketId={ticketId}
-                waitingTime={waitingTime} /> 
+          <RequestFormCreate
+            setCustomerRequest={props.setCustomerRequest}
+            setForm={setForm}
+            createTicket={props.createTicket}
+            setTicketId={setTicketId}
+            setWaitingTime={setWaitingTime}
+            ticketId={ticketId}
+            waitingTime={waitingTime} />
           : false
         /*</Container>*/
       }
       {
-        props.customerRequest &&
-        <Container fluid className="editPlanContainer">
-          <Col>
-            <Row className="editRow">
-              <Col>
-                <b>REQUESTED SERVICE</b>
-                <p></p>
-                <p><b>Ticket ID:</b> {ticketId}</p>
-                <p><b>Expected Waiting Time:</b> {waitingTime}</p>
-              </Col>
-            </Row>
-            <br></br>
-          </Col>
-        </Container>
+        props.customerRequest ?/*&&
+        <Container fluid className="editPlanContainer">*/
+          <Row>
+            <Col md={10}>
+              <h2>Requested service</h2>
+              <ul></ul>
+              <p><b>Ticket ID:</b> {ticketId}</p>
+              <p><b>Expected Waiting Time:</b> {waitingTime}</p>
+            </Col>
+            <Col md={2}>
+              <ul></ul>
+              <div className="d-grid gap-2">
+                <Button variant="danger" size="lg" onClick={() => { setForm(false); props.setCustomerRequest(false); /*add by function called backend to delete ticket from db*/ }}><h4>Delete</h4></Button>
+              </div>
+            </Col>
+          </Row>
+          : false
+        /*</Container>*/
       }
     </Col>
   );
@@ -68,12 +73,12 @@ function RequestFormCreate(props) {
   const [selectedService, setSelectedService] = useState("serviceTest1");
   const handleCreate = async (event) => {
     event.preventDefault();
-    let res= await props.createTicket(selectedService);
-    props.setTicketId(res[0]); 
-    props.setWaitingTime(res[1]); 
+    let res = await props.createTicket(selectedService);
+    props.setTicketId(res[0]);
+    props.setWaitingTime(res[1]);
     console.log(res);
     props.setForm(false);
-    props.setCustomerRequest(true); 
+    props.setCustomerRequest(true);
   };
 
   return (

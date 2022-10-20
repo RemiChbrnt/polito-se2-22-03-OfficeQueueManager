@@ -124,14 +124,41 @@ label {
 }
 
 h5 {
-    margin-top: 40px !important;
-    padding: 8px;
-    padding-left: 15px;
-    background-color: #6bc4a6;
+    text-align: center;
     color: white;
-    width: 710px;
-    border-radius: 5px;
-    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+}
+
+
+h3.ticket {
+    text-align: center;
+    color: rgb(243, 198, 0);
+}
+
+h3.ticketField {
+    text-align: center;
+    color: rgb(255, 217, 50);
+}
+
+.sideBarContainer {
+    height: 12%;
+    margin-bottom: 1%;
+    background-color: #00706c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sideBarContainer:hover{
+    cursor: pointer;
+}
+
+.sideBarContainerActive {
+    height: 12%;
+    margin-bottom: 1%;
+    background-color: #00b1ab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .createRequestContainer {
@@ -188,7 +215,6 @@ h5 {
     border: none !important;
     background-size: 300% 100%;
     border-radius: 50px;
-    moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
@@ -207,7 +233,6 @@ h5 {
     border: none !important;
     background-size: 300% 100%;
     border-radius: 50px;
-    moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
@@ -215,7 +240,6 @@ h5 {
 
 .bn632-hover1:hover {
     background-position: 100% 0;
-    moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
@@ -223,7 +247,6 @@ h5 {
 
 .bn632-hover2:hover {
     background-position: 100% 0;
-    moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
@@ -306,11 +329,36 @@ h5 {
     padding: 10px;
 }
 
-.Table table {
+.tableTickets {
+    flex:1;
+    width: 100%;    
     display: flex;
-    background-color: #f00;
+    flex-direction: column;
+    align-items: center;
 }
 
 .Display table tbody tr th {
+    padding-top: 50px;
     width: calc(33%);
+}
+
+.ticketDisplay {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.appDisplay {
+    display: flex;
+    width: 100%;
+    height: 90vh;
+    flex-direction: row;
+}
+
+.rightSideDisplay {
+    flex:1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
