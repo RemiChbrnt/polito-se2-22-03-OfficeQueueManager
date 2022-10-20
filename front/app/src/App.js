@@ -8,6 +8,7 @@ import routes from './navigation/routes';
 import db from "./firebase-config.js";
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
+import { SideBar } from './components/sideBar';
 import { Display } from './screens/display';
 
 function App() {
@@ -35,19 +36,24 @@ function App() {
     return (
         <div>
             <BrowserRouter>
-                <NavigationBar />
-                <Routes>
-                    {routes.map((route) => {
-                        return (<Route
-                            key={route.key}
-                            path={route.path}
-                            element={route.screen}
-                        />);
-                      })
-                    }
-                </Routes>
+            <NavigationBar />
+            <div className="appDisplay">
+                <SideBar/>
+                <div className = "rightSideDisplay">
+                    <Routes>
+                        {routes.map((route) => {
+                            return (<Route
+                                key={route.key}
+                                path={route.path}
+                                element={route.screen}
+                            />);
+                            })
+                        }
+                    </Routes>
+                </div>
+            </div>   
             </BrowserRouter>
-            {/*<Display/>*/}
+            <Display/>
         </div>
     );
 }

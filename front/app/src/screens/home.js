@@ -52,10 +52,6 @@ const HomeView = () => {
         </Col>
       </Row>
       <ul></ul>
-
-      <Row>
-        <Display/>
-      </Row>
     </Container>
   );
 }

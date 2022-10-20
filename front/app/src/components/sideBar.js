@@ -17,13 +17,23 @@ const SideBar = () => {
     const navigate = useNavigate();
 
     return (
-            <ListGroup variant="flush">
-                {selectedFilter === "home" ? <ListGroup.Item className="bg-secondary text-white" active><h5>Home</h5></ListGroup.Item> : <ListGroup.Item action onClick={() => { setSelectedFilter("home"); navigate(`/`) }}><h5>Home</h5></ListGroup.Item>}
-                {selectedFilter === "client" ? <ListGroup.Item className="bg-secondary text-white" active><h5>Client</h5></ListGroup.Item> : <ListGroup.Item action onClick={() => { setSelectedFilter("client"); navigate(`/client`) }}><h5>Ranking</h5></ListGroup.Item>}
-                {selectedFilter === "desk-officer" ? <ListGroup.Item className="bg-secondary text-white" active><h5>Desk Officer</h5></ListGroup.Item> : <ListGroup.Item action onClick={() => { setSelectedFilter("desk-officer"); navigate(`/desk-officer`) }}><h5>Desk Officer</h5></ListGroup.Item>}
-                {selectedFilter === "admin" ? <ListGroup.Item className="bg-secondary text-white" active><h5>Admin</h5></ListGroup.Item> : <ListGroup.Item action onClick={() => { setSelectedFilter("admin"); navigate(`/admin`) }}><h5>Admin</h5></ListGroup.Item>}
-                {selectedFilter === "login" ? <ListGroup.Item className="bg-secondary text-white" active><h5>Login</h5></ListGroup.Item> : <ListGroup.Item action onClick={() => { setSelectedFilter("login"); navigate(`/login`) }}><h5>Login</h5></ListGroup.Item>}
-            </ListGroup>
+            <div style={{width:"10%", height: "100%"}}>
+                {selectedFilter === "home" ? 
+                    <div className="sideBarContainerActive"><h5>Home</h5></div> : 
+                    <div className="sideBarContainer" onClick={() => { setSelectedFilter("home"); navigate(`/`) }}><h5>Home</h5></div>}
+                {selectedFilter === "client" ? 
+                    <div className="sideBarContainerActive"><h5>Client</h5></div> : 
+                    <div className="sideBarContainer" onClick={() => { setSelectedFilter("client"); navigate(`/client`) }}><h5>Client</h5></div>}
+                {selectedFilter === "desk-officer" ? 
+                    <div className="sideBarContainerActive"><h5>Desk Officer</h5></div> : 
+                    <div className="sideBarContainer" onClick={() => { setSelectedFilter("desk-officer"); navigate(`/desk-officer`) }}><h5>Desk Officer</h5></div>}
+                {selectedFilter === "admin" ? 
+                <div className="sideBarContainerActive"><h5>Admin</h5></div> : 
+                    <div className="sideBarContainer" onClick={() => { setSelectedFilter("admin"); navigate(`/admin`) }}><h5>Admin</h5></div>}
+                {selectedFilter === "login" ? 
+                    <div className="sideBarContainerActive"><h5>Login</h5></div> : 
+                    <div className="sideBarContainer" onClick={() => { setSelectedFilter("login"); navigate(`/login`) }}><h5>Login</h5></div>}
+            </div>
     );
 }
 

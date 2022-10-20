@@ -6,7 +6,6 @@ import '../App.css';
 
 function Display() {
 
-    const [loading, setLoading] = useState(true);
     const [update, setUpdate] = useState(false);
     const [services, setServices] = useState([]);
     const [queues, setQueues] = useState([]);
@@ -23,7 +22,6 @@ function Display() {
 
 
     const updateQueues = async () => {
-        setLoading(true);
         let queues = [];
         let services = await getDocs(servicesCollectionRef);
         console.log("services " + services);
@@ -36,14 +34,12 @@ function Display() {
         await setting().then(() => {
             setQueues(queues);
             setServices(services.docs);
-            setLoading(false);
         })
         return;
     }
 
 
     const updateTickets = async () => {
-        setLoading(true);
         let desks = await getDocs(desksCollectionRef);
         let currentCustomers = [];
         const setting = async () => {
@@ -54,56 +50,55 @@ function Display() {
         await setting().then(() => {
             setDesks(desks.docs);
             setCurrentCustomers(currentCustomers);
-            setLoading(false);
         });
         return;
     }
 
 
     useEffect(() => {
-        const updateDisplay = async () => {
+        const updateDisplay = async() => {
             await updateQueues();
             await updateTickets();
         }
         updateDisplay();
+        const updateDisplayInterval = setInterval(() => updateDisplay(), 60000);
+        return () => {
+            clearInterval(updateDisplayInterval);
+        }
     }, [update]);
 
 
     return (
         <div className="DisplayContainer">
-            {!loading &&
-                <div className="Display">
-                    <table className="table">
-                        <tbody>
-                            <tr><th>Service</th><th>Queue length</th><th>Estimated time</th></tr>
-                            {
-                                services.map((s, i) => {
-                                    return (
-                                        <tr key={s.id}>
-                                            <td>{s.id}</td>
-                                            <td>{queues[i] !== undefined ? queues[i] : 0}</td>
-                                            <td>{s.data().estimatedTime}</td>
-                                        </tr>
-                                    );
-                                })
-                            }
-                        </tbody>
-                    </table>
-                    <table width="100%">
-                        <tbody>
-                            <tr><th>Current Ticket</th><th>Counter</th></tr>
-                            {desks.map((d, i) => {
+            <div className="Display">
+                <table className="tableTickets">
+                    <tr className="ticketDisplay"><h3 className="ticketField">Current Ticket</h3><h3 className="ticketField">Counter</h3></tr>
+                    {desks.map((d, i) => {
+                        return (
+                            <tr className="ticketDisplay" key={d.id}>
+                                <h3 className="ticket">{currentCustomers[i]}</h3>
+                                <h3 className="ticket">{d.id}</h3>
+                            </tr>
+                        );
+                    })}
+                </table>
+                <table className="table">
+                    <tbody>
+                        <tr><th>Service</th><th>Queue length</th><th>Estimated time</th></tr>
+                        {
+                            services.map((s, i) => {
                                 return (
-                                    <tr key={d.id}>
-                                        <td>{currentCustomers[i]}</td>
-                                        <td>{d.id}</td>
+                                    <tr key={s.id}>
+                                        <td>{s.id}</td>
+                                        <td>{queues[i] !== undefined ? queues[i] : 0}</td>
+                                        <td>{s.data().estimatedTime}</td>
                                     </tr>
                                 );
-                            })}
-                        </tbody>
-                    </table>
-                </div>
-            }
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
